@@ -1,0 +1,36 @@
+version: "3"
+services:
+  backend:
+    container_name: backend
+    build: backend
+    command: ./docker-entrypoint.sh
+    ports:
+      - "8000:8000"
+    volumes:
+      - $PWD/backend:/app
+    networks:
+      custom_network:
+        ipv4_address: 172.30.1.1
+  ui:
+    container_name: ui
+    build: ui
+    command: ./docker-entrypoint.sh
+    stdin_open: true
+    ports:
+      - "3000:3000"
+    volumes:
+      - $PWD/ui:/app
+    networks:
+      custom_network:
+        ipv4_address: 172.30.1.2
+
+volumes:
+  project_name_here:
+
+networks:
+  custom_network:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.30.0.0/16
+
