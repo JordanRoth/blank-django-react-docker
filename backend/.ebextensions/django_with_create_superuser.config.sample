@@ -1,0 +1,7 @@
+container_commands:
+  01_migrate:
+      command: "source /var/app/venv/*/bin/activate && python3 manage.py migrate && python3 manage.py shell -c \"from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@example.com', 'ILoveJordan')\""
+      leader_only: true
+option_settings:
+  aws:elasticbeanstalk:container:python:
+    WSGIPath: backend.wsgi:application

@@ -1,9 +1,11 @@
 version: "3"
 services:
   backend:
-    container_name: backend
+    container_name: <PROJECT_NAME>-backend
     build: backend
     command: ./docker-entrypoint.sh
+    environment:
+      - PRODUCTION=0
     ports:
       - "8000:8000"
     volumes:
@@ -12,7 +14,7 @@ services:
       custom_network:
         ipv4_address: 172.30.1.1
   ui:
-    container_name: ui
+    container_name: <PROJECT_NAME>-ui
     build: ui
     command: ./docker-entrypoint.sh
     stdin_open: true
@@ -23,9 +25,18 @@ services:
     networks:
       custom_network:
         ipv4_address: 172.30.1.2
+  deploy:
+    container_name: <PROJECT_NAME>-deploy
+    build: deploy
+    environment:
+      AWS_CONFIG_FILE: "/root/.aws/config"
+    volumes:
+      - ~/.aws/:/root/.aws/
+      - ~/.ssh/:/root/.ssh/
+      - $PWD/backend:/app
 
 volumes:
-  project_name_here:
+  snobify:
 
 networks:
   custom_network:
