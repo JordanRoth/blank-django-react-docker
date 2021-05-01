@@ -20,4 +20,4 @@ init-deploy:
 
 do-deploy:
 	docker-compose up -d deploy;
-	docker-compose exec deploy bash -c "cd app && eb deploy snobify-env --profile <PROJECT_NAME>";
+	docker-compose exec deploy bash -c "cd app && eb deploy <PROJECT_NAME>-env --profile <PROJECT_NAME>";
