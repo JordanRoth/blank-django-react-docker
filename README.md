@@ -7,6 +7,8 @@
 
 - Temporarily add npm install before npm start in ui/docker-entrypoint.sh (this is necessary for the first make start only)
 
+- Copy and rename backend/env.example to backend/env
+
 - In ~/.aws/config add: 
 [<PROJECT_NAME>]
 region = us-west-2
