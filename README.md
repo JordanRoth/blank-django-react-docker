@@ -22,4 +22,4 @@ aws_secret_access_key = <SECRET_ACCESS_KEY>
 pip install --upgrade -r requirements.txt
 pip freeze > requirements.txt
 
-- When first deploying to eb, you have to make sure the .env file gets sent to the server as it's presently in the .ebignore (backend)
+- When first deploying to eb, you have to make sure the .env file gets sent to the server as it's presently in the .ebignore (backend). This is optional if you make all of the default environment values the prod settings (recommended).
